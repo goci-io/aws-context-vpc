@@ -3,8 +3,6 @@ terraform {
   backend "s3" {}
 }
 
-data "aws_region" "current" {}
-
 data "aws_availability_zones" "available" {
   status = "available"
 }
@@ -23,7 +21,6 @@ module "dynamic_subnets" {
   source             = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.16.0"
   namespace          = var.namespace
   stage              = var.stage
-  region             = data.aws_region.current.name
   availability_zones = data.aws_availability_zones.available.names
   max_subnet_count   = var.max_subnet_count
   vpc_id             = module.vpc.vpc_id
