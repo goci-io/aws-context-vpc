@@ -4,10 +4,10 @@ output "vpc_id" {
 }
 
 output "vpc_cidr_block" {
-    value = module.vpc.cidr_block
+    value = module.vpc.vpc_cidr_block
 }
 
-output "vpc_cidr_ipv6_block" {
+output "vpc_ipv6_cidr_block" {
     value = module.vpc.ipv6_cidr_block
 }
 
