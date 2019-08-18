@@ -27,6 +27,6 @@ output "private_subnet_cidrs" {
   value = module.dynamic_subnets.private_subnet_cidrs
 }
 
-variable "availability_zones" {
+output "availability_zones" {
   value = module.dynamic_subnets.availability_zones
 }
