@@ -4,7 +4,7 @@ terraform {
 }
 
 data "aws_availability_zones" "available" {
-  status = "available"
+  state = "available"
 }
 
 module "vpc" {
