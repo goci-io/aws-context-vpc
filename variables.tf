@@ -19,3 +19,20 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
   description = "The CIDR block to use for this VPC"
 }
+
+variable "tags" {
+  description = "Additional tags to apply to all resources that use this label module"
+  type        = map(string)
+  default     = {}
+}
+
+variable "attributes" {
+  type        = list(string)
+  description = "Any extra attributes for naming these resources"
+  default     = []
+}
+
+variable "max_subnet_count" {
+  default     = 3
+  description = "Sets the maximum amount of subnets to deploy. 0 will deploy a subnet for every provided availablility zone (in `availability_zones` variable) within the region"
+}

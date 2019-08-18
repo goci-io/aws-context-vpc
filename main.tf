@@ -25,6 +25,7 @@ module "dynamic_subnets" {
   stage              = var.stage
   region             = data.aws_region.current.name
   availability_zones = data.aws_availability_zones.available.names
+  max_subnet_count   = var.max_subnet_count
   vpc_id             = module.vpc.vpc_id
   igw_id             = module.vpc.igw_id
   cidr_block         = var.cidr_block
