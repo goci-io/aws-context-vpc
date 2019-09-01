@@ -38,6 +38,7 @@ variable "max_subnet_count" {
 }
 
 variable "aws_assume_role_arn" {
-  default     = string
+  type        = string
+  default     = ""
   description = "Role to assume to get access to AWS"
 }
