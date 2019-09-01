@@ -1,6 +1,13 @@
 terraform {
   required_version = ">= 0.12.1"
-  backend "s3" {}
+}
+
+provider "aws" {
+  version = "~> 2.25"
+
+  assume_role {
+    role_arn = var.aws_assume_role_arn
+  }
 }
 
 data "aws_availability_zones" "available" {

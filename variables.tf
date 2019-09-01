@@ -36,3 +36,8 @@ variable "max_subnet_count" {
   default     = 3
   description = "Sets the maximum amount of subnets to deploy. 0 will deploy a subnet for every provided availablility zone (in `availability_zones` variable) within the region"
 }
+
+variable "aws_assume_role_arn" {
+  default     = string
+  description = "Role to assume to get access to AWS"
+}
