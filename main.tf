@@ -4,6 +4,7 @@ terraform {
 
 provider "aws" {
   version = "~> 2.25"
+  alias   = "target"
 
   assume_role {
     role_arn = var.aws_assume_role_arn
@@ -22,6 +23,10 @@ module "vpc" {
   name       = var.name
   tags       = var.tags
   attributes = var.attributes
+
+  providers = {
+    aws = aws.target
+  }
 }
 
 module "dynamic_subnets" {
@@ -36,4 +41,8 @@ module "dynamic_subnets" {
   name               = var.name
   tags               = var.tags
   attributes         = var.attributes
+
+  providers = {
+    aws = aws.target
+  }
 }
