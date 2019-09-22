@@ -42,3 +42,9 @@ variable "aws_assume_role_arn" {
   default     = ""
   description = "Role to assume to get access to AWS"
 }
+
+variable "aws_region" {
+  type        = string
+  default     = ""
+  description = "The AWS Region to create the VPC in. Defaults to the current region"
+}
