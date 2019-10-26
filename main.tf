@@ -13,10 +13,12 @@ provider "aws" {
 }
 
 locals {
-  aws_region = var.aws_region == "" ? data.aws_region.current.name : var.aws_region
+  aws_region = var.aws_region == "" ? join("", data.aws_region.current.*.name) : var.aws_region
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
+  count = var.aws_region == "" ? 1 : 0
+}
 
 data "aws_availability_zones" "available" {
   state = "available"
