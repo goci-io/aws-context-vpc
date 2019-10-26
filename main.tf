@@ -5,19 +5,11 @@ terraform {
 provider "aws" {
   version = "~> 2.25"
   alias   = "target"
-  region  = local.aws_region
+  region  = var.aws_region
 
   assume_role {
     role_arn = var.aws_assume_role_arn
   }
-}
-
-locals {
-  aws_region = var.aws_region == "" ? join("", data.aws_region.current.*.name) : var.aws_region
-}
-
-data "aws_region" "current" {
-  count = var.aws_region == "" ? 1 : 0
 }
 
 data "aws_availability_zones" "available" {
