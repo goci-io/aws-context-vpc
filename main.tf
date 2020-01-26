@@ -17,7 +17,7 @@ data "aws_availability_zones" "available" {
 }
 
 module "vpc" {
-  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.4.2"
+  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.8.1"
   namespace  = var.namespace
   stage      = var.stage
   cidr_block = var.cidr_block
@@ -31,7 +31,7 @@ module "vpc" {
 }
 
 module "dynamic_subnets" {
-  source              = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.16.0"
+  source              = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.18.1"
   namespace           = var.namespace
   stage               = var.stage
   availability_zones  = data.aws_availability_zones.available.names
