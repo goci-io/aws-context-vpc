@@ -4,7 +4,6 @@ terraform {
 
 provider "aws" {
   version = "~> 2.25"
-  alias   = "target"
   region  = var.aws_region
 
   assume_role {
@@ -17,21 +16,17 @@ data "aws_availability_zones" "available" {
 }
 
 module "vpc" {
-  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.8.1"
+  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.9.0"
   namespace  = var.namespace
   stage      = var.stage
   cidr_block = var.cidr_block
   name       = var.name
   tags       = var.tags
   attributes = var.attributes
-
-  providers = {
-    aws = aws.target
-  }
 }
 
 module "dynamic_subnets" {
-  source              = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.18.1"
+  source              = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.19.0"
   namespace           = var.namespace
   stage               = var.stage
   availability_zones  = data.aws_availability_zones.available.names
@@ -42,9 +37,5 @@ module "dynamic_subnets" {
   name                = var.name
   tags                = var.tags
   attributes          = var.attributes
-  subnet_type_tag_key = "SubnetType"
-
-  providers = {
-    aws = aws.target
-  }
+  subnet_type_tag_key = "ZoneAvailability"
 }
