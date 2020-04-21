@@ -11,17 +11,23 @@ provider "aws" {
   }
 }
 
+locals {
+  tags = merge({
+    KubernetesCluster = ""
+  }, var.tags)
+}
+
 data "aws_availability_zones" "available" {
   state = "available"
 }
 
 module "vpc" {
-  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.9.0"
+  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.10.0"
   namespace  = var.namespace
   stage      = var.stage
   cidr_block = var.cidr_block
   name       = var.name
-  tags       = var.tags
+  tags       = local.tags
   attributes = var.attributes
 }
 
@@ -35,7 +41,15 @@ module "dynamic_subnets" {
   igw_id              = module.vpc.igw_id
   cidr_block          = var.cidr_block
   name                = var.name
-  tags                = var.tags
+  tags                = local.tags
   attributes          = var.attributes
   subnet_type_tag_key = "ZoneAvailability"
+
+  private_subnets_additional_tags = {
+    "kubernetes.io/role/internal-elb" = ""
+  }
+
+  public_subnets_additional_tags = {
+    "kubernetes.io/role/elb" = ""
+  }
 }
