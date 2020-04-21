@@ -32,6 +32,11 @@ variable "attributes" {
   default     = []
 }
 
+variable "cluster_name" {
+  type        = string
+  description = "The kubernetes cluster name"
+}
+
 variable "max_subnet_count" {
   default     = 3
   description = "Sets the maximum amount of subnets to deploy. 0 will deploy a subnet for every provided availablility zone (in `availability_zones` variable) within the region"

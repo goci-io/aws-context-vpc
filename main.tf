@@ -13,7 +13,7 @@ provider "aws" {
 
 locals {
   tags = merge({
-    KubernetesCluster = ""
+    KubernetesCluster = var.cluster_name
   }, var.tags)
 }
 
