@@ -6,6 +6,9 @@ This terraform module combines [cloudposse/terraform-aws-vpc](https://github.com
 
 In addition it reads the current available AWS information as Terraform DataSource and uses some more available variables in the current context and adds required tags to VPC and subnets for kubernetes.
 
+**Important note:** When using this module and `kops` your VPC may be deleted as it contains `KubernetesCluster` AWS Tags and all related resources created by this module. In case you want to avoid this you can override the `KubernetesCluster` tag and change it to something else than the cluster name.
+
+
 ## Usage
 
 ```hcl
