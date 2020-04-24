@@ -1,4 +1,4 @@
-    
+
 variable "namespace" {
   type        = string
   description = "Namespace (e.g. `goci` or `cloudposse`)"
