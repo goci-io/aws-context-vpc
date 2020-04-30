@@ -2,7 +2,7 @@
 
 #### Maintained by [@goci-io/prp-terraform](https://github.com/orgs/goci-io/teams/prp-terraform)
 
-![Terraform Validate](https://github.com/goci-io/aws-kubernetes-vpc/workflows/Terraform%20Validate/badge.svg)
+![terraform](https://github.com/goci-io/aws-kubernetes-vpc/workflows/terraform/badge.svg?branch=master)
 
 This terraform module combines [cloudposse/terraform-aws-vpc](https://github.com/cloudposse/terraform-aws-vpc) and [cloudposse/terraform-aws-dynamic-subnets](https://github.com/cloudposse/terraform-aws-dynamic-subnets) to provision a new AWS VPC with public and private subnets for use with kubernetes.
 
