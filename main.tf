@@ -35,7 +35,7 @@ module "dynamic_subnets" {
   source              = "git::https://github.com/cloudposse/terraform-aws-dynamic-subnets.git?ref=tags/0.19.0"
   namespace           = var.namespace
   stage               = var.stage
-  availability_zones  = data.aws_availability_zones.available.names
+  availability_zones  = slice(data.aws_availability_zones.available.names, 0, var.max_subnet_count)
   max_subnet_count    = var.max_subnet_count
   vpc_id              = module.vpc.vpc_id
   igw_id              = module.vpc.igw_id
