@@ -13,7 +13,7 @@ provider "aws" {
 
 locals {
   tags = merge({
-    KubernetesCluster = var.cluster_name
+    KubernetesCluster                           = var.cluster_name
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }, var.tags)
 }
