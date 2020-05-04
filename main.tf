@@ -14,6 +14,7 @@ provider "aws" {
 locals {
   tags = merge({
     KubernetesCluster = var.cluster_name
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }, var.tags)
 }
 
@@ -46,10 +47,10 @@ module "dynamic_subnets" {
   subnet_type_tag_key = "ZoneAvailability"
 
   private_subnets_additional_tags = {
-    "kubernetes.io/role/internal-elb" = ""
+    "kubernetes.io/role/internal-elb" = "1"
   }
 
   public_subnets_additional_tags = {
-    "kubernetes.io/role/elb" = ""
+    "kubernetes.io/role/elb" = "1"
   }
 }
